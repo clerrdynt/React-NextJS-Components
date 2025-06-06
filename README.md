@@ -5,6 +5,7 @@ The application of the JavaScript fundamentals are the following:
         - variables like 'count' that holds the current value of the state management and 'useState' which gives React the ability to reactively update the UI when the variable changes.
         - functions like 'handleSubmit' that triggered when the studenr form is submitted.
         - the usage of objects that holds form data grouped by field name. Makes it easier to manage compared to separate state variables for each input.
+        - the usage of array to store the student form data. When the form is submitted, the array is turned back into an object so it's easier to display or process.
     DOM Manipulation Exercises
         - updation of state using useState. React re-renders affected components, and applies only the necessary changes, thus improving performances.
     Event Handling Basics

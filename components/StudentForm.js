@@ -2,27 +2,39 @@
 
 import { useState } from 'react';
 
+const initialFormArray = [
+  ['lastName', ''],
+  ['firstName', ''],
+  ['address', ''],
+  ['birthday', ''],
+  ['degreeProgram', ''],
+  ['cellphone', ''],
+  ['email', ''],
+  ['institutionalEmail', ''],
+  ['mailAddress', ''],
+];
+
 const StudentForm = () => {
-  const [form, setForm] = useState({
-    lastName: '',
-    firstName: '',
-    address: '',
-    birthday: '',
-    degreeProgram: '',
-    cellphone: '',
-    email: '',
-    institutionalEmail: '',
-    mailAddress: '',
-  });
+  const [formArray, setFormArray] = useState(initialFormArray);
+
+  const getValue = (name) => {
+    const entry = formArray.find(([key]) => key === name);
+    return entry ? entry[1] : '';
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setFormArray((prev) =>
+      prev.map(([key, val]) =>
+        key === name ? [key, value] : [key, val]
+      )
+    );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Submitted info:\n\n${JSON.stringify(form, null, 2)}`);
+    const formObject = Object.fromEntries(formArray);
+    alert(`Submitted info:\n\n${JSON.stringify(formObject, null, 2)}`);
   };
 
   return (
@@ -31,34 +43,34 @@ const StudentForm = () => {
         <div style={styles.card}>
           <h3 style={styles.heading}>Basic Information</h3>
           <label>Last Name:</label>
-          <input name="lastName" value={form.lastName} onChange={handleChange} required />
+          <input name="lastName" value={getValue('lastName')} onChange={handleChange} required />
 
           <label>First Name:</label>
-          <input name="firstName" value={form.firstName} onChange={handleChange} required />
+          <input name="firstName" value={getValue('firstName')} onChange={handleChange} required />
 
           <label>Address:</label>
-          <input name="address" value={form.address} onChange={handleChange} required />
+          <input name="address" value={getValue('address')} onChange={handleChange} required />
 
           <label>Birthday:</label>
-          <input name="birthday" type="date" value={form.birthday} onChange={handleChange} required />
+          <input name="birthday" type="date" value={getValue('birthday')} onChange={handleChange} required />
 
           <label>Degree Program:</label>
-          <input name="degreeProgram" value={form.degreeProgram} onChange={handleChange} required />
+          <input name="degreeProgram" value={getValue('degreeProgram')} onChange={handleChange} required />
         </div>
 
         <div style={styles.card}>
           <h3 style={styles.heading}>Contact Information</h3>
           <label>Cellphone Number:</label>
-          <input name="cellphone" value={form.cellphone} onChange={handleChange} required />
+          <input name="cellphone" value={getValue('cellphone')} onChange={handleChange} required />
 
           <label>Email Address:</label>
-          <input type="email" name="email" value={form.email} onChange={handleChange} required />
+          <input type="email" name="email" value={getValue('email')} onChange={handleChange} required />
 
           <label>Institutional Email:</label>
-          <input type="email" name="institutionalEmail" value={form.institutionalEmail} onChange={handleChange} required />
+          <input type="email" name="institutionalEmail" value={getValue('institutionalEmail')} onChange={handleChange} required />
 
           <label>Mail Address:</label>
-          <input name="mailAddress" value={form.mailAddress} onChange={handleChange} required />
+          <input name="mailAddress" value={getValue('mailAddress')} onChange={handleChange} required />
         </div>
 
         <button type="submit" style={styles.submitButton}>Submit</button>
