@@ -1,6 +1,5 @@
-// app/layout.js
 import NavBar from '@/components/NavBar';
-import './globals.css'; // Optional: add global CSS here
+import './globals.css'; 
 
 export const metadata = {
   title: 'My App',
@@ -24,8 +23,8 @@ const styles = {
   main: {
     padding: '20px',
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: 'var(--background)',  // ✅ fixed: removed light color
-    color: 'var(--foreground)',            // ✅ optional: ensure text is visible
+    backgroundColor: 'var(--background)',  // fixed: removed light color
+    color: 'var(--foreground)',            // optional: ensure text is visible
     minHeight: '100vh',
   },
 };
